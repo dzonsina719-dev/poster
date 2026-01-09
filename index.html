@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Політика конфіденційності - Додаток з інтеграцією Facebook API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1877F2;
+            --secondary-color: #42B72A;
+            --dark-color: #1C1E21;
+            --light-color: #F0F2F5;
+            --text-color: #333;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header styles */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .logo i {
+            font-size: 2.2rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Main content */
+        .privacy-policy {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .policy-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .policy-header h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .update-date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        /* Policy sections */
+        .policy-section {
+            margin-bottom: 40px;
+        }
+        
+        .policy-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .policy-section h2 i {
+            font-size: 1.4rem;
+        }
+        
+        .policy-section p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .policy-section ul, .policy-section ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .policy-section li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight {
+            background-color: #f9f9f9;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .data-table th, .data-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .data-table th {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+        
+        .data-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .privacy-policy {
+                padding: 25px;
+            }
+            
+            .policy-header h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .privacy-policy {
+                padding: 20px;
+            }
+            
+            .policy-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .policy-section h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fab fa-facebook-square"></i>
+                    <span>AppName</span>
+                </div>
+                <nav class="nav-links">
+                    <a href="#"><i class="fas fa-home"></i> Головна</a>
+                    <a href="#"><i class="fas fa-user-shield"></i> Конфіденційність</a>
+                    <a href="#"><i class="fas fa-envelope"></i> Контакти</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="privacy-policy">
+            <div class="policy-header">
+                <h1>Політика конфіденційності</h1>
+                <p class="update-date">Останнє оновлення: 15 листопада 2023 року</p>
+                <p>Ця політика конфіденційності пояснює, як наш додаток збирає, використовує та захищає вашу інформацію при використанні Facebook API.</p>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="policy-section">
+                <h2><i class="fas fa-info-circle"></i> Загальна інформація</h2>
+                <p>Ця Політика конфіденційності описує, як ми обробляємо вашу особисту інформацію під час використання нашого додатка, який інтегрований з Facebook API. Ми прагнемо захищати вашу конфіденційність і дотримуватися примених законів про захист даних, включаючи GDPR та CCPA.</p>
+                <p>Використовуючи наш додаток, ви погоджуєтеся з умовами цієї Політики конфіденційності. Якщо ви не згодні з будь-якою частиною цієї політики, будь ласка, не використовуйте наш додаток.</p>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="policy-section">
+                <h2><i class="fas fa-database"></i> Які дані ми збираємо через Facebook API</h2>
+                <p>При авторизації через Facebook наш додаток запитує доступ до обмеженої інформації з вашого профілю. Ми збираємо лише ті дані, які необхідні для функціонування нашого сервісу:</p>
+                
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Тип даних</th>
+                            <th>Призначення</th>
+                            <th>Період зберігання</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Основна інформація профілю (ім'я, прізвище, ID)</td>
+                            <td>Ідентифікація користувача та персоналізація досвіду</td>
+                            <td>До видалення облікового запису</td>
+                        </tr>
+                        <tr>
+                            <td>Електронна пошта</td>
+                            <td>Відправка важливих сповіщень та відновлення доступу</td>
+                            <td>До видалення облікового запису</td>
+                        </tr>
+                        <tr>
+                            <td>Фото профілю</td>
+                            <td>Відображення аватара у додатку</td>
+                            <td>До видалення облікового запису</td>
+                        </tr>
+                        <tr>
+                            <td>Список друзів (за дозволом)</td>
+                            <td>Функція соціальних рекомендацій (опційно)</td>
+                            <td>Не зберігаємо постійно</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="highlight">
+                    <p><strong>Важливо:</strong> Ми не збираємо та не зберігаємо паролі від вашого облікового запису Facebook. Автентифікація відбувається через безпечний механізм OAuth від Facebook.</p>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="policy-section">
+                <h2><i class="fas fa-cogs"></i> Як ми використовуємо ваші дані</h2>
+                <p>Зібрані дані використовуються виключно для наступних цілей:</p>
+                <ul>
+                    <li>Надання доступу до функцій нашого додатку</li>
+                    <li>Персоналізація вашого досвіду користування</li>
+                    <li>Покращення якості наших послуг</li>
+                    <li>Відправлення важливих сповіщень про зміни в сервісі</li>
+                    <li>Запобігання шахрайству та зловживанням</li>
+                    <li>Відповідність вимогам законодавства</li>
+                </ul>
+                <p>Ми не передаємо ваші особисті дані третім сторонам для маркетингових цілей без вашого явного згоди.</p>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="policy-section">
+                <h2><i class="fas fa-shield-alt"></i> Захист даних</h2>
+                <p>Ми вживаємо відповідних технічних та організаційних заходів для захисту ваших даних від несанкціонованого доступу, зміни, розголошення або знищення. Серед цих заходів:</p>
+                <ol>
+                    <li>Шифрування даних під час передачі за допомогою SSL/TLS</li>
+                    <li>Регулярне оновлення систем безпеки</li>
+                    <li>Обмежений доступ до даних для персоналу</li>
+                    <li>Регулярне резервне копіювання даних</li>
+                    <li>Моніторинг систем на предмет несанкціонованого доступу</li>
+                </ol>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="policy-section">
+                <h2><i class="fas fa-exchange-alt"></i> Спільне використання даних з третіми сторонами</h2>
+                <p>Ми можемо передавати обмежену інформацію третім сторонам лише в таких випадках:</p>
+                <ul>
+                    <li><strong>Постачальники послуг:</strong> Компаніям, які надають послуги від нашого імені (хостинг, аналітика). Ці постачальники мають доступ лише до необхідних даних і зобов'язані захищати їх.</li>
+                    <li><strong>Вимоги законодавства:</strong> Коли це необхідно для виконання закону, нормативного акта, судового рішення або запиту державних органів.</li>
+                    <li><strong>Захист прав:</strong> Для захисту прав, власності чи безпеки нашої компанії, наших користувачів або інших осіб.</li>
+                </ul>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="policy-section">
+                <h2><i class="fas fa-user-check"></i> Ваші права</h2>
+                <p>Відповідно до чинного законодавства про захист даних, ви маєте такі права:</p>
+                <ul>
+                    <li><strong>Право на доступ:</strong> Ви можете запитувати копію ваших особистих даних, які ми зберігаємо.</li>
+                    <li><strong>Право на виправлення:</strong> Ви можете вимагати виправлення неточних або неповних даних.</li>
+                    <li><strong>Право на видалення:</strong> Ви можете вимагати видалення ваших особистих даних за певних обставин.</li>
+                    <li><strong>Право на обмеження обробки:</strong> Ви можете вимагати обмежити обробку ваших даних.</li>
+                    <li><strong>Право на перенесення даних:</strong> Ви можете отримати ваші дані в структурованому, звичайному форматі.</li>
+                    <li><strong>Право на заперечення:</strong> Ви можете заперечити проти обробки ваших даних для певних цілей.</li>
+                </ul>
+                <p>Для реалізації будь-якого з цих прав, будь ласка, зв'яжіться з нами через контактну інформацію, наведену нижче.</p>
+            </div>
+
+            <!-- Section 7 -->
+            <div class="policy-section">
+                <h2><i class="fas fa-cookie-bite"></i> Файли cookie та відстеження</h2>
+                <p>Наш додаток може використовувати файли cookie та подібні технології відстеження для покращення роботи сервісу. Файли cookie - це невеликі текстові файли, які зберігаються на вашому пристрої.</p>
+                <p>Ми використовуємо файли cookie для:</p>
+                <ul>
+                    <li>Збереження ваших налаштувань</li>
+                    <li>Автентифікації користувачів</li>
+                    <li>Аналітики використання додатку</li>
+                </ul>
+                <p>Ви можете контролювати використання файлів cookie на рівні браузера. Однак відключення файлів cookie може обмежити функціональність нашого додатку.</p>
+            </div>
+
+            <!-- Section 8 -->
+            <div class="policy-section">
+                <h2><i class="fas fa-external-link-alt"></i> Посилання на інші сайти</h2>
+                <p>Наш додаток може містити посилання на інші веб-сайти, якими ми не керуємо. Ми не несемо відповідальності за вміст або практики конфіденційності будь-яких сторонніх сайтів. Ми рекомендуємо ознайомитися з політикою конфіденційності кожного сайту, який ви відвідуєте.</p>
+            </div>
+
+            <!-- Section 9 -->
+            <div class="policy-section">
+                <h2><i class="fas fa-child"></i> Захист дітей</h2>
+                <p>Наш додаток не призначений для дітей віком до 13 років (або віком до 16 років в ЄС). Ми не збираємо свідомо особисту інформацію від дітей. Якщо ви дізнаєтесь, що дитина надала нам свої особисті дані, будь ласка, зв'яжіться з нами, і ми вживемо заходів для видалення цієї інформації.</p>
+            </div>
+
+            <!-- Section 10 -->
+            <div class="policy-section">
+                <h2><i class="fas fa-envelope"></i> Зв'язок з нами</h2>
+                <p>Якщо у вас є питання щодо цієї Політики конфіденційності або практик обробки даних, будь ласка, зв'яжіться з нами:</p>
+                <ul>
+                    <li><strong>Електронна пошта:</strong> privacy@appname.com</li>
+                    <li><strong>Поштова адреса:</strong> вул. Прикладна, 123, м. Київ, 01001, Україна</li>
+                    <li><strong>Телефон:</strong> +380 (44) 123-45-67</li>
+                </ul>
+            </div>
+
+            <!-- Section 11 -->
+            <div class="policy-section">
+                <h2><i class="fas fa-edit"></i> Зміни до цієї Політики конфіденційності</h2>
+                <p>Ми можемо час від часу оновлювати цю Політику конфіденційності. Будь-які зміни будуть опубліковані на цій сторінці з оновленою датою вступу в силу. Ми рекомендуємо періодично переглядати цю Політику конфіденційності, щоб бути в курсі того, як ми захищаємо вашу інформацію.</p>
+                <p>Продовжуючи використовувати наш додаток після внесення змін до цієї Політики, ви погоджуєтеся з оновленими умовами.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Про нас</h3>
+                    <p>Ми розробляємо інноваційні додатки з інтеграцією соціальних мереж для покращення вашого цифрового досвіду.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Швидкі посилання</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Головна</a></li>
+                        <li><a href="#">Умови використання</a></li>
+                        <li><a href="#">Політика конфіденційності</a></li>
+                        <li><a href="#">Контакти</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Контактна інформація</h3>
+                    <div class="contact-info">
+                        <div><i class="fas fa-map-marker-alt"></i> <span>вул. Прикладна, 123, м. Київ, Україна</span></div>
+                        <div><i class="fas fa-phone"></i> <span>+380 (44) 123-45-67</span></div>
+                        <div><i class="fas fa-envelope"></i> <span>support@appname.com</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 AppName. Усі права захищені. Цей сайт не є частиною Facebook або Meta Platforms, Inc.</p>
+                <p>Facebook є зареєстрованою торговою маркою Meta Platforms, Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add current year to copyright
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentYear = new Date().getFullYear();
+            const copyrightElement = document.querySelector('.copyright p');
+            if (copyrightElement) {
+                copyrightElement.innerHTML = copyrightElement.innerHTML.replace('2023', currentYear);
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
